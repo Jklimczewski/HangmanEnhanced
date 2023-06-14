@@ -1,26 +1,40 @@
-import { useNavigate } from 'react-router-dom';
 import { useKeycloak } from "@react-keycloak/web";
+import { useState } from 'react';
 
 function Login() {
-  const navigate = useNavigate();
   const { keycloak } = useKeycloak();
+  const [alert, setAlert] = useState("");
+
+  const handleLogin = () => {
+    setAlert("Redirecting...");
+    setTimeout(() => {
+        keycloak.login();
+    }, 2000);
+  }
+
+  const handleRegister = () => {
+    setAlert("Redirecting...");
+    setTimeout(() => {
+        keycloak.register();
+    }, 2000);
+  }
+
   return (
     <div>
         {keycloak.authenticated === false && (
             <div>
-                <button type="button" onClick={() => keycloak.login()}>
+                <button type="button" onClick={handleLogin}>
                     Login
                 </button>
-                <button type="button" onClick={() => keycloak.register()}>
+                <button type="button" onClick={handleRegister}>
                     Register
                 </button>
                 <a href="/words">Words List</a>
+                <br></br>
+                <h1>{alert}</h1>
             </div>
         )}
-        {keycloak.authenticated && (
-            
-            window.location.href = "/account"
-        )}
+        {keycloak.authenticated === false && (window.location.href = "/account")}
     </div>
   )
 }
