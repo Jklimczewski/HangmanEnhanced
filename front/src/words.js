@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios"
 import { Link } from "react-router-dom";
+import keycloak from "./Keycloak";
 
 function Words() {
     const [inputted, setInput] = useState("");
@@ -8,12 +9,13 @@ function Words() {
     
     const handleSearch = () => {
         if (inputted === "") {
-            axios.get(`https://localhost:5000/words`)
+            axios.get(`https://localhost:5000/words`,
+            { headers: { Authorization: `Bearer ${keycloak.token}`} })
             .then(res => showWords(res.data))
             .catch(err => showWords(err.response.data));
         }
         else {
-            axios.post(`https://localhost:5000/words`, { pattern: inputted})
+            axios.post(`https://localhost:5000/words`, { pattern: inputted}, { headers: { Authorization: `Bearer ${keycloak.token}`} })
             .then(res => showWords(res.data))
             .catch(err => showWords(err.response.data));
         }
