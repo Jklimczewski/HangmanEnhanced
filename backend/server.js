@@ -3,10 +3,13 @@ require("dotenv").config({path: "./hidden.env"});
 const express = require('express');
 const https = require("https");
 const fs = require("fs");
+const keycloak = require('./keycloak-config');
 
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
+app.use(keycloak.middleware());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
