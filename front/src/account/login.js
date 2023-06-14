@@ -34,7 +34,7 @@ function Login() {
                 <h1>{alert}</h1>
             </div>
         )}
-        {keycloak.authenticated === false && (window.location.href = "/account")}
+        {keycloak.authenticated && (window.location.href = "/account")}
     </div>
   )
 }
