@@ -1,4 +1,3 @@
-require("dotenv").config({path: "./config.env"});
 require("dotenv").config({path: "./hidden.env"});
 const express = require('express');
 const https = require("https");

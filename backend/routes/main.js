@@ -1,10 +1,9 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
 const fs = require('fs')
 const dbo = require("../db/conn");
 const keycloak = require('../keycloak-config');
 const router = express.Router();
-const wordList = require("../../front/src/game/wordList.json")
+const wordList = require("../wordList.json")
 
 router.get('/words', keycloak.protect(), (req, res) => {
   res.send(
