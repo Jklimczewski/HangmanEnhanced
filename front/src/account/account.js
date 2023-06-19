@@ -28,6 +28,7 @@ function Account() {
                     <Link to="/account/game"><button>Play</button></Link>
                     <button onClick={handleUpdate}>Manage acc</button>
                     <button onClick={handleLogout}>Logout</button>
+                    <a href="/words">Words List</a>
                     <br></br>
                     <h1>{alert}</h1>
                 </div>

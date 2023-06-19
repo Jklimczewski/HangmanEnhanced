@@ -29,7 +29,6 @@ function Login() {
                 <button type="button" onClick={handleRegister}>
                     Register
                 </button>
-                <a href="/words">Words List</a>
                 <br></br>
                 <h1>{alert}</h1>
             </div>
