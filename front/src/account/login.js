@@ -1,5 +1,23 @@
 import { useKeycloak } from "@react-keycloak/web";
 import { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+
+const StyledDiv = styled("div")`
+  background-color: #AA7CD3;
+  width: 70%;
+  height: 120px;
+  text-align: center;
+  margin: 100px auto;
+  padding: 100px 0;
+  border-radius: 30px;
+  font-size: 25px;
+`;
+
+const StyledDiv2 = styled("div")`
+  padding: 25px;
+  display: inline-block;
+`;
 
 function Login() {
   const { keycloak } = useKeycloak();
@@ -22,16 +40,19 @@ function Login() {
   return (
     <div>
         {keycloak.authenticated === false && (
-            <div>
-                <button type="button" onClick={handleLogin}>
+            <StyledDiv>
+              <StyledDiv2>
+                <Button variant="outlined" size="large" type="button" onClick={handleLogin}>
                     Login
-                </button>
-                <button type="button" onClick={handleRegister}>
+                </Button>
+              </StyledDiv2>
+              <StyledDiv2>
+                <Button variant="outlined" size="large" type="button" onClick={handleRegister}>
                     Register
-                </button>
-                <br></br>
-                <h1>{alert}</h1>
-            </div>
+                </Button>
+              </StyledDiv2>
+              <h3>{alert}</h3>
+            </StyledDiv>
         )}
         {keycloak.authenticated && (window.location.href = "/account")}
     </div>
